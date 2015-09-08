@@ -1,8 +1,9 @@
-# Broccoli Handlebars Precompiler
+# Broccoli Handlebars Commonjs
 
 [Broccoli](https://github.com/broccolijs/broccoli) plugin that gives us an easy way to precompile [Handlebars](http://handlebarsjs.com/) templates.
 
-It opens every handlebar file and creates js file that follows commonjs format.
+This plugin is based on [jakkor/broccoli-handlebars-precompiler](https://github.com/jakkor/broccoli-handlebars-precompiler), and create a js file following commonjs format for every handlebar file in the tree.
+
 
 ### Install
 ```
