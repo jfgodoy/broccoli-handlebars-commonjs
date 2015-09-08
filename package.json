@@ -1,0 +1,30 @@
+{
+  "name": "broccoli-handlebars-commonjs",
+  "description": "Precompiles handlebars templates in commonjs format",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jorge Godoy",
+    "email": "godoy.jf@gmail.com"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfgodoy/broccoli-handlebars-commonjs.git"
+  },
+  "keywords": [
+    "broccoli-plugin",
+    "handlebars",
+    "javascript",
+    "commonjs",
+    "require"
+  ],
+  "bugs": {
+    "url": "https://github.com/jakkor/broccoli-handlebars-commonjs/issues"
+  },
+  "dependencies": {
+    "broccoli-filter": "^0.1.14",
+    "handlebars": "4.0.2"
+  },
+  "homepage": "https://github.com/jfgodoy/broccoli-handlebars-commonjs"
+}
