@@ -107,14 +107,14 @@ handlebars.registerHelper('upper', function(str) {
 
 module.exports = handlebars;
 ```
-Then, in the Brocfile.js configure the runtimePath to the above file.
+Then, in the Brocfile.js configure the `runtimePath` to the above file.
 ```js
 /* project/Brocfile.js */
 var broccoliHandlebars = require('broccoli-handlebars-commonjs');
 
 var tree = broccoliHandlebars('templates', {
   srcDir: './',
-  runtimePath: './handlebars'
+  runtimePath: './handlebarsRuntime'
 });
 
 module.exports = tree;

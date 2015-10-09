@@ -2,7 +2,7 @@ var broccoliHandlebars = require('../');
 
 var tree = broccoliHandlebars('templates', {
   srcDir: './',
-  runtimePath: './handlebars'
+  runtimePath: './handlebarsRuntime'
 });
 
 module.exports = tree;
