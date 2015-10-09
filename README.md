@@ -54,14 +54,69 @@ var tree = broccoliHandlebars(tree, options);
 
 ### Options
 
-### srcDir (required)
+#### srcDir (required)
 
 Source directory where handlebars are stored.
 
-### extensions (optional)
+#### extensions (optional)
 
 Array of handlebars file extensions. Default is hbs and handlebars.
 
-### targetExtension (optional)
+#### targetExtension (optional)
 
 Array of target extensions. Default is js.
+
+#### handlebars (optional)
+A Handlebars instance. Useful if you need to make sure you are using a specific version.
+```js
+var tree = broccoliHandlebars(tree, {
+  handlebars: require('handlebars')
+});
+```
+
+#### runtimePath (optional)
+Path to handlebars runtime. Useful if you need to make sure you are using a specific version or want to use helpers, partials and another stuff in the compiled templates.
+
+```js
+// node_modules path
+var tree = broccoliHandlebars(tree, {
+  runtimePath: 'handlebars/dist/handlebars.runtime.js'
+});
+
+// local path
+var tree = broccoliHandlebars(tree, {
+  runtimePath: './handlebars'
+});
+```
+
+### Helpers and Partials
+If you want to use helpers or partials, you need to create a module that exports a runtime handlebars, and configure the option `runtimePath` of this plugin.
+
+For example:
+
+First define a module that exports a handlebars runtime with a helper
+```js
+/* project/handlebarsRuntime.js */
+/* this module add a helper to handlebars runtime */
+
+var handlebars = require('handlebars/dist/handlebars.runtime');
+
+handlebars.registerHelper('upper', function(str) {
+	return str.toUpperCase();
+});
+
+module.exports = handlebars;
+```
+Then, in the Brocfile.js configure the runtimePath to the above file.
+```js
+/* project/Brocfile.js */
+var broccoliHandlebars = require('broccoli-handlebars-commonjs');
+
+var tree = broccoliHandlebars('templates', {
+  srcDir: './',
+  runtimePath: './handlebars'
+});
+
+module.exports = tree;
+```
+The compiled templates will reference correctly the runtime file, and they will be able to use the helper defined.
