@@ -35,14 +35,10 @@ function HandlebarsFilters (tree, options) {
 }
 
 HandlebarsFilters.prototype.processString = function (string, srcFile) {
-  try {
-    var precompiled = this.handlebars.precompile(string, this.options);
-    var runtimePath = this.getRuntimePath(srcFile);
-    var output = 'var Handlebars = require(\'' + runtimePath + '\'); module.exports = Handlebars.template(' + precompiled + ');';
-    return output;
-  } catch (err) {
-    console.log(err.message);
-  }
+  var precompiled = this.handlebars.precompile(string, this.options);
+  var runtimePath = this.getRuntimePath(srcFile);
+  var output = 'var Handlebars = require(\'' + runtimePath + '\'); module.exports = Handlebars.template(' + precompiled + ');';
+  return output;
 };
 
 /**
