@@ -22,7 +22,12 @@ function HandlebarsFilters (tree, options) {
   this.options.extensions = options.extensions || ['hbs', 'handlebars'];
   this.options.targetExtension = options.targetExtension || ['js'];
   this.handlebars = this.options.handlebars || handlebars;
-  this.options.runtimePath = this.options.runtimePath || 'handlebars/dist/handlebars.runtime.js'; 
+
+  if (this.options.runtimePath) {
+    this.options.runtimePath = path.resolve(this.options.runtimePath);
+  } else {
+    this.options.runtimePath = 'handlebars/dist/handlebars.runtime.js'; 
+  }
 
   // Set options necessary for the filter
   var filterOptions = {
@@ -47,12 +52,21 @@ HandlebarsFilters.prototype.processString = function (string, srcFile) {
  * @return {string} handlebars runtime path
  */
 HandlebarsFilters.prototype.getRuntimePath = function (srcFile) {
+  var absPath, folder, relativePath;
+
   // node module
   if (/^\w/.test(this.options.runtimePath)) {
     return this.options.runtimePath;
   }
 
   // path
-  var runtimePathAbs = path.resolve(this.options.runtimePath);
-  return path.relative(srcFile, runtimePathAbs);
+  absPath = path.resolve(path.join(this.options.srcDir, srcFile));
+  folder = path.dirname(absPath);
+  relativePath = path.relative(folder, this.options.runtimePath);
+
+  if (relativePath[0] !== '.') {
+    relativePath = './' + relativePath;
+  }
+
+  return relativePath;
 };

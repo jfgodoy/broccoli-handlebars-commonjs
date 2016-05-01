@@ -113,7 +113,7 @@ Then, in the Brocfile.js configure the `runtimePath` to the above file.
 var broccoliHandlebars = require('broccoli-handlebars-commonjs');
 
 var tree = broccoliHandlebars('templates', {
-  srcDir: './',
+  srcDir: './templates',
   runtimePath: './handlebarsRuntime'
 });
 
